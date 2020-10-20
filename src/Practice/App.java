@@ -4,8 +4,12 @@ import java.util.Scanner;
 
 public class App {
 
-	Article[] articles = new Article[10];
+	Article[] articles = new Article[1];
 
+
+	int lastArticleId = 0;  //지역 변수에서 인스턴스 변수(객체 변수로 승격)
+	
+	
 	Article getArticle(int id) {
 
 		if (id > articles.length) {
@@ -22,8 +26,8 @@ public class App {
 		}
 
 		Scanner sc = new Scanner(System.in);
-
-		int lastArticleId = 0;
+		
+		int maxArticlesCount = articles.length;
 
 		while (true) {
 			System.out.printf("명령어 입력) ");
@@ -31,7 +35,12 @@ public class App {
 
 			if (command.equals("article add")) {
 				System.out.println("== 게시물 등록 ==");
-
+				
+				if(lastArticleId >= maxArticlesCount ) {
+					System.out.println("더이상 게시물을 등록하실 수 없습니다.");
+					continue;
+				}
+				
 				int id = lastArticleId + 1;
 				String title;
 				String body;
