@@ -104,7 +104,7 @@ public class App {
 																							// 이를 통해 다음 절차 진행시 articles라고 인식하고 기존과 동일한 진행 가능
 				}
 
-//				if (articlesSize() >= maxArticlesCount) {
+//				if (articlesSize() >= maxArticlesCount) {                        //배열 공간이 무한히 확장되므로 maxArticleCount는 더이상 무용지물
 //					System.out.println("더 이상 생성할 수 없습니다.");
 //					continue;
 //				}
