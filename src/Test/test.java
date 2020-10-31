@@ -1,4 +1,4 @@
-package Practice;
+package Test;
 
 public class test {
 
