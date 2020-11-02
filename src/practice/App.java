@@ -9,24 +9,24 @@ public class App {
 
 	MemberController memberController = new MemberController();
 	ArticleController articleController = new ArticleController();
-	
-	public void run() {
 
-		// TODO Auto-generated method stub
+	public void run() {
 
 		Scanner sc = new Scanner(System.in);
 
 		while (true) {
-			System.out.printf("명령어: ");
-			String command = sc.nextLine();
+			System.out.printf("명령어 입력) ");
+			String cmd = sc.nextLine();
 
-			if (command.startsWith("member ")) {
-				memberController.run(sc,command);
+			if (cmd.startsWith("member ")) {
+				memberController.run(sc, cmd);
+
+			} else if (cmd.startsWith("article ")) {
+				articleController.run(sc, cmd);
+
 			}
-			if (command.startsWith("article ")) {
-				articleController.run(sc,command);
-			}
-			else if (command.equals("exit")) {
+
+			else if (cmd.equals("exit")) {
 				System.out.println("프로그램 종료");
 				break;
 			}
