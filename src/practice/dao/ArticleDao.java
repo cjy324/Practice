@@ -8,41 +8,42 @@ import practice.dto.Article;
 public class ArticleDao {
 
 	private List<Article> articles;
-	private int lastArticleId;
-
-	public List<Article> getArticles(){
-		return articles;
-	}
+	private int lastArticleNum;
 	
 	public ArticleDao() {
 		articles = new ArrayList<>();
-		lastArticleId = 0;
-		
-		for(int i = 1 ; i < 11; i ++) {
-			add(i+"제목",i+"내용",i+"작성자");
-		}
+		lastArticleNum = 0;
+	
+		makeTestData();
 	}
 
-	public int add(String title, String body, String writer) {
-		Article article = new Article();
+	private void makeTestData() {
+		for(int i = 1; i < 6; i ++) {
+			add("title" + i,"body" + i, 1);		
+		}
+		for(int i = 6; i < 11; i ++) {
+			add("title" + i,"body" + i, 2);		
+		}
+		
+	
+	}
 
-		article.id = lastArticleId + 1;
+	public int add(String title, String body, int writerNum) {
+		Article article = new Article();
+		
+		article.aNum = lastArticleNum + 1;
 		article.title = title;
 		article.body = body;
-		article.writer = writer;
+		article.wrticleNum = writerNum;
 		articles.add(article);
-		lastArticleId = article.id;
-
-		return article.id;
+		lastArticleNum = article.aNum;
+		
+		return article.aNum;
+		
 	}
 
-	public int getArticlesSize() {
-		return getArticles().size();
+	public List<Article> articles() {
+		return articles;
 	}
-
-	public Article getArticlesByIndex(int i) {
-		return getArticles().get(i);
-	}
-
-
+	
 }

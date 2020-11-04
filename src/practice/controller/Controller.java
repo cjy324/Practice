@@ -1,5 +1,7 @@
 package practice.controller;
 
-public class Controller {
+public abstract class Controller {
+
+	public abstract void doCommand(String cmd);
 
 }

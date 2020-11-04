@@ -11,30 +11,16 @@ public class ArticleService {
 	ArticleDao articleDao;
 	
 	public ArticleService() {
-		articleDao = Container.articeDao;
+		articleDao = Container.articleDao;
 		
 	}
 	
-	
-	
-	public int add(String title, String body, String writer) {
-		return articleDao.add(title, body, writer);
+	public int add(String title, String body, int writerNum) {
+		return articleDao.add(title, body, writerNum);
 	}
 
 	public List<Article> getArticles() {
-		return articleDao.getArticles();
+		return articleDao.articles();
 	}
-
-
-
-	public int getArticlesSize() {
-		return articleDao.getArticlesSize() ;
-	}
-
-
-
-	public Article getArticlesByIndex(int i) {
-		return articleDao.getArticlesByIndex(i);
-	}
-
+	
 }

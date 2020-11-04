@@ -2,9 +2,9 @@ package practice.dto;
 
 public class Article {
 
-	public int id;
+	public int aNum;
 	public String title;
 	public String body;
-	public String writer;
+	public int wrticleNum;
 
 }
