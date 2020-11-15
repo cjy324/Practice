@@ -5,19 +5,29 @@ import java.util.Scanner;
 import mySqlTest.container.Container;
 import mySqlTest.controller.ArticleController;
 import mySqlTest.controller.MemberController;
+import mySqlTest.service.ArticleService;
 
 public class App {
 
 		Scanner sc;
 		MemberController memberController;
 		ArticleController articleController; 
+		
 		public App() {
 			
 			sc = Container.scanner;
 			memberController = Container.memberController;
 			articleController = Container.articleController;
+			
+			init();
 		}
 	
+	private void init() {
+		ArticleService articleservice = Container.articleService;
+			Container.session.selectedBoardId = articleservice.getDefultBoardId(1);
+			
+		}
+
 	public void run() {
 		
 		while(true) {

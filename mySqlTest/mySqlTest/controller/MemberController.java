@@ -47,6 +47,7 @@ public class MemberController {
 		}
 		
 		System.out.printf("%s님 로그인 완료\n",member.name);
+		Container.session.loginedMemberId = member.memberId;
 		
 	}
 
