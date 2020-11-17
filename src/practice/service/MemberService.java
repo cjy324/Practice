@@ -13,13 +13,13 @@ public class MemberService {
 		memberDao = Container.memberDao;
 	}
 
-	public int join(String mId, String mPw, String mName) {
-		return memberDao.join(mId, mPw, mName);
+	public int join(String loginId, String loginPw, String name) {
+		return memberDao.join(loginId, loginPw, name);
 	}
 
-	public boolean checkUsableMemberIdByMId(String mId) {
+	public boolean checkUsableMemberIdByLoginId(String loginId) {
 		for(Member member : memberDao.getMembers()) {
-			if(member.mId.equals(mId)) {
+			if(member.loginId.equals(loginId)) {
 				return false;
 			}		
 		}
@@ -27,9 +27,10 @@ public class MemberService {
 			return true;	
 	}
 
-	public Member getMemberByInputedMId(String inputedMId) {
+	public Member getMemberByInputedLoginId(String inputedLoginId) {
 		for(Member member : memberDao.getMembers()) {
-			if(member.mId.equals(inputedMId)) {
+			
+			if(member.loginId.equals(inputedLoginId)) {
 				return member;
 			}
 		}
@@ -37,9 +38,9 @@ public class MemberService {
 		return null;
 	}
 
-	public Member getMemberByNum(int writerNum) {
+	public Member getMemberByMemberId(int memberId) {
 		for(Member member : memberDao.getMembers()) {
-			if(member.mNum == writerNum) {
+			if(member.memberId == memberId) {
 				return member;
 			}
 		}

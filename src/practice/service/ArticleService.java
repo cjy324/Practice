@@ -18,32 +18,27 @@ public class ArticleService {
 
 	}
 
-	public int makeBoard(String bName) {
-		return articleDao.makeBoard(bName);
+	public int makeBoard(String boardName) {
+		return articleDao.makeBoard(boardName);
 	}
 
-	public Board getBoardByInputedNum(int inputedNum) {
-		for (Board board : articleDao.getBoards()) {
-			if (board.bNum == inputedNum) {
-				return board;
-			}
-		}
+	public Board getBoard(int inputedId) {
+		return articleDao.getBoard(inputedId);
 
-		return null;
 	}
 
-	public int add(int boardNum, String title, String body, int writerNum) {
-		return articleDao.add(boardNum, title, body, writerNum);
+	public int add(int boardId, String title, String body, int memberId) {
+		return articleDao.add(boardId, title, body, memberId);
 	}
 
 	public List<Article> getArticles() {
 		return articleDao.getArticles();
 	}
 
-	public List<Article> getArticlesByBoardNum(int selectedBoardNum) {
+	public List<Article> getArticlesByBoardId(int selectedBoardId) {
 		List<Article> newArticles = new ArrayList<>();
 		for (Article article : articleDao.getArticles()) {
-			if (article.boardNum == selectedBoardNum) {
+			if (article.boardId == selectedBoardId) {
 				newArticles.add(article);
 			}
 		}
@@ -54,7 +49,20 @@ public class ArticleService {
 	}
 
 	public int getDefultBoardNum() {
-		return articleDao.getBoards().get(0).bNum;
+		return articleDao.getBoards().get(0).boardId;
+	}
+
+	public Article getArticleById(int inputedId) {
+		return articleDao.getArticleById(inputedId);
+	}
+
+	public void articleModify(int inputedId, String title, String body) {
+		articleDao.articleModify( inputedId,  title,  body);
+		
+	}
+
+	public void articleDelete(int inputedId) {
+		articleDao.articleDelete(inputedId);
 	}
 
 }

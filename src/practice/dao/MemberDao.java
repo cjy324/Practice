@@ -2,8 +2,11 @@ package practice.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import practice.dto.Member;
+import practice.mysqlutil.MysqlUtil;
+import practice.mysqlutil.SecSql;
 
 public class MemberDao {
 
@@ -15,22 +18,33 @@ public class MemberDao {
 		lastMemberNum = 0;
 
 	}
+	//회원가입
+	public int join(String loginId, String loginPw, String name) {
 
-	public int join(String mId, String mPw, String mName) {
+		SecSql sql = new SecSql();
 
-		Member member = new Member();
+		sql.append("INSERT INTO member ");
+		sql.append("SET loginId = ?, ", loginId);
+		sql.append("loginPw = ?, ", loginPw);
+		sql.append("name = ?", name);
 
-		member.mNum = lastMemberNum + 1;
-		member.mId = mId;
-		member.mPw = mPw;
-		member.mName = mName;
-		members.add(member);
-		lastMemberNum = member.mNum;
-
-		return member.mNum;
+		return MysqlUtil.insert(sql);
 	}
-
+	//로그인 아이디 확인
 	public List<Member> getMembers() {
+
+		SecSql sql = new SecSql();
+
+		sql.append("SELECT * FROM member");
+
+		List<Map<String, Object>> memberMapList = MysqlUtil.selectRows(sql);
+
+		for (Map<String, Object> memberMap : memberMapList) {
+			Member member = new Member(memberMap);
+
+			members.add(member);
+		}
+
 		return members;
 	}
 }
