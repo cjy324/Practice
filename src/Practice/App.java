@@ -8,6 +8,7 @@ import practice.controller.Controller;
 import practice.controller.MemberController;
 import practice.mysqlutil.MysqlUtil;
 import practice.service.ArticleService;
+import practice.service.MemberService;
 
 public class App {
 
@@ -27,10 +28,13 @@ public class App {
 
 		// DB연결
 		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "textBoard");
-
+		MysqlUtil.setDevMode(true);  //어떤 쿼리가 실행되었는지 확인할 수 있는 모드
 		ArticleService articleService = Container.articleService;
 		Container.session.selectedBoardId = articleService.getDefultBoardNum();
-
+		
+		MemberService memberService = Container.memberService;
+		memberService.getMemberByMemberId(1);
+		Container.session.loginMemberId = 1;
 	}
 
 	public void run() {
@@ -45,11 +49,12 @@ public class App {
 				System.out.println("종료");
 				needToExit = true;
 			}
-			// 명령어를 작성할 때마다 controller를 선택해야하니 Controller라는 상위개념이 필요
+
 			else {
 				Controller controller = getControllerByCmd(cmd);
 				if (controller != null) {
 					controller.doCmd(cmd);
+					
 				}
 			}
 
@@ -59,7 +64,7 @@ public class App {
 			//
 			if (needToExit) {
 				break;
-			} // 만약, DB 연결이 종료됐으면 프로그램도 종료
+			} 
 
 		}
 

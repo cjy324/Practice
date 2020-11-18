@@ -10,12 +10,7 @@ import practice.mysqlutil.SecSql;
 
 public class MemberDao {
 
-	private List<Member> members;
-	private int lastMemberNum;
-
 	public MemberDao() {
-		members = new ArrayList<>();
-		lastMemberNum = 0;
 
 	}
 	//회원가입
@@ -36,7 +31,8 @@ public class MemberDao {
 		SecSql sql = new SecSql();
 
 		sql.append("SELECT * FROM member");
-
+		
+		List<Member> members = new ArrayList<>();
 		List<Map<String, Object>> memberMapList = MysqlUtil.selectRows(sql);
 
 		for (Map<String, Object> memberMap : memberMapList) {
