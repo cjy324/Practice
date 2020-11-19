@@ -2,13 +2,18 @@ package practice.dto;
 
 import java.util.Map;
 
+import practice.container.Container;
+
 public class Board {
 
-	
 	public Board(Map<String, Object> boardMap) {
-		this.boardId = (int)boardMap.get("boardId");
-		this.boardName = (String)boardMap.get("boardName");
+		this.id = (int)boardMap.get("id");
+		this.name = (String)boardMap.get("name");
+		this.code = (String)boardMap.get("code");
+
 	}
-	public int boardId;
-	public String boardName;
+	public int id;
+	public String name;
+	public String code;
+	
 }

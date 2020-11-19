@@ -1,4 +1,4 @@
-package practice.mysqlutil;
+package MysqlUtil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -5,7 +5,7 @@ import java.util.Scanner;
 import practice.controller.ArticleController;
 import practice.controller.MemberController;
 import practice.dao.ArticleDao;
-import practice.dao.MemberDao;
+import practice.dao.MemebrDao;
 import practice.service.ArticleService;
 import practice.service.MemberService;
 import practice.session.Session;
@@ -13,25 +13,19 @@ import practice.session.Session;
 public class Container {
 
 	public static Scanner scanner;
-	
-	public static Session session;
-
-	public static MemberDao memberDao;
-	public static MemberService memberService;
-
 	public static MemberController memberController;
 	public static ArticleController articleController;
-
-	public static ArticleDao articleDao;
-
+	public static MemberService memberService;
 	public static ArticleService articleService;
-	
-	
+	public static MemebrDao memebrDao;
+	public static ArticleDao articleDao;
+	public static Session session;
+
 	static {
 		scanner = new Scanner(System.in);
-		
 		session = new Session();
-		memberDao = new MemberDao();
+		
+		memebrDao = new MemebrDao();
 		articleDao = new ArticleDao();
 		
 		memberService = new MemberService();
@@ -39,8 +33,5 @@ public class Container {
 		
 		memberController = new MemberController();
 		articleController = new ArticleController();
-		
-		
 	}
-
 }

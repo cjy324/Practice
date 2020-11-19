@@ -1,4 +1,4 @@
-package practice.mysqlutil;
+package MysqlUtil;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;

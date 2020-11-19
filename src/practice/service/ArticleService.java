@@ -1,13 +1,12 @@
 package practice.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import practice.container.Container;
 import practice.dao.ArticleDao;
 import practice.dto.Article;
 import practice.dto.Board;
+import practice.dto.Recommand;
 import practice.dto.Reply;
 
 public class ArticleService {
@@ -16,82 +15,74 @@ public class ArticleService {
 
 	public ArticleService() {
 		articleDao = Container.articleDao;
-
 	}
 
-	public int makeBoard(String boardName) {
-		return articleDao.makeBoard(boardName);
+	public int addBoard(String name, String code) {
+		return articleDao.addBoard(name, code);
 	}
 
 	public Board getBoard(int inputedId) {
 		return articleDao.getBoard(inputedId);
-
 	}
 
 	public int add(int boardId, String title, String body, int memberId) {
 		return articleDao.add(boardId, title, body, memberId);
 	}
 
-	public List<Article> getArticles() {
-		return articleDao.getArticles();
+	public List<Article> getArticlesForPrint(int boardId) {
+		return articleDao.getArticlesForPrint(boardId);
 	}
 
-	public List<Article> getArticlesByBoardId(int selectedBoardId) {
-		List<Article> newArticles = new ArrayList<>();
-		for (Article article : articleDao.getArticlesForPrint()) {
-			if (article.boardId == selectedBoardId) {
-				newArticles.add(article);
-			}
-		}
-
-		Collections.reverse(newArticles); // ArrayList 역순시켜주는 유틸?
-
-		return newArticles;
+	public Article getArticleForDetail(int inputedId) {
+		return articleDao.getArticleForDetail(inputedId);
 	}
 
-	public int getDefultBoardNum() {
-		return articleDao.getBoards().get(0).boardId;
+	public void articleModify(int id, String title, String body) {
+		articleDao.articleModify(id, title, body);
 	}
 
-	public Article getArticleById(int inputedId) {
-		return articleDao.getArticleById(inputedId);
-	}
-
-	public void articleModify(int inputedId, String title, String body) {
-		articleDao.articleModify(inputedId, title, body);
+	public void articleDelete(int id) {
+		articleDao.articleDelete(id);
 
 	}
 
-	public void articleDelete(int inputedId) {
-		articleDao.articleDelete(inputedId);
+	public int addReply(int articleId, String replyBody, int replyMemberId) {
+		return articleDao.addReply(articleId, replyBody, replyMemberId);
 	}
 
-	public int addReply(int replyArticleId, String replyBody, int replyWriterId) {
-		return articleDao.addReply(replyArticleId, replyBody, replyWriterId);
-	}
-
-	public List<Reply> getReplies(int id) {
-		List<Reply> selectArticleReplies = new ArrayList<>();
-		for (Reply reply : articleDao.getReplies()) {
-			if (reply.replyArticleId == id) {
-				selectArticleReplies.add(reply);
-			}
-		}
-
-		return selectArticleReplies;
+	public List<Reply> getRepliesForPrint(int articleId) {
+		return articleDao.getRepliesForPrint(articleId);
 	}
 
 	public Reply getReply(int inputedId) {
 		return articleDao.getReply(inputedId);
 	}
 
-	public void modifyReply(int inputedId, String replyBody, int replyWriterId) {
-		articleDao.modifyReply(inputedId, replyBody, replyWriterId);
+	public void replyModify(int id, String replyBody) {
+		articleDao.replyModify(id, replyBody);
 
 	}
 
-	public void deleteReply(int inputedId) {
-		articleDao.deleteReply(inputedId);
+	public void replyDelete(int id) {
+		articleDao.replyDelete(id);
+
+	}
+
+	public int addRecommand(int articleId, int recommandMemberId) {
+		return articleDao.addRecommand(articleId, recommandMemberId);
+	}
+
+	public Recommand getRecommand(int articleId, int recommandMemberId) {
+		return articleDao.getRecommand(articleId, recommandMemberId);
+	}
+
+	public List<Recommand> getRecommands(int articleId) {
+		return articleDao.getRecommands(articleId);
+	}
+
+	public void cancelRecommand(int articleId, int recommandMemberId) {
+		articleDao.cancelRecommand(articleId, recommandMemberId);
+
 	}
 
 }
